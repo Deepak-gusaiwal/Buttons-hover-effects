@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons</title>
+</head>
+<style>
+    .buttons-container {
+        width: 100%;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.315);
+    }
+
+    .btn {
+        font-size: 20px;
+        text-transform: capitalize;
+        font-weight: 700;
+        padding: 11px 10px;
+        margin: 10px 0px;
+        cursor: pointer;
+        background-color: rgb(211, 211, 211);
+        border: none;
+        position: relative;
+
+        --border-size:2px;
+        --bg-color:rgb(211, 211, 211);
+        --hover-color:rgb(49, 253, 253);
+        --text-color:white;
+    }
+
+    /* ************pop-up buttons started********************** */
+    .btn-pop::before{
+        content: '';
+        position: absolute;
+        border: var(--border-size) solid var(--bg-color);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transition: top,left,right,bottom,100ms ease-in-out;
+    }
+    .btn-pop:hover::before,
+    .btn-pop:focus::before{
+        z-index: 1;
+        top: calc(var(--border-size) * -2);
+        left: calc(var(--border-size) * -2);
+        right: calc(var(--border-size) * -2);
+        bottom: calc(var(--border-size) * -2);
+    }
+     /* ************pop-up buttons ended********************** */
+     /* ************btn-slide buttons started********************** */
+     .btn-slide{
+         z-index: 1;
+     }
+     .btn-slide::before{
+        content: '';
+        position: absolute;
+        background-color: var(--hover-color);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transform: scaleX(0.1);
+        transform-origin: right;
+        transition: 300ms;
+     }
+     .btn-slide:hover::before,
+     .btn-slide:focus::before
+     {
+        transform: scaleX(1);
+     }
+     .btn-slide:hover{
+         color: var(--text-color);
+     }
+     /* ************btn-slide buttons ended********************** */
+     /* ************btn-circle buttons started********************** */
+     .btn-circle{
+         z-index: 1;
+         overflow: hidden;
+         background-color: var(--hover-color);
+     }
+     .btn-circle::before{
+        content: '';
+        position: absolute;
+        background-color: var(--bg-color);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+        z-index: -1;
+        transform: scale(1.5);
+        transition: all 500ms ease-in-out;
+        
+     }
+     .btn-circle:hover{
+         color: var(--text-color);
+     }
+     .btn-circle:hover::before,
+     .btn-circle:focus::before{
+        transform: scale(0);
+        
+     }
+     /* ************btn-circle buttons ended********************** */
+      /* ************btn-underline buttons started********************** */
+      .btn-underline::before{
+        content: '';
+        position: absolute;
+        background-color: var(--hover-color);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height:4px;
+        transform: scaleX(0);
+        transition: 300ms;
+      }
+      .btn-underline:hover::before,
+      .btn-underline:focus::before{
+        transform: scaleX(1);
+      }
+      .btn-underline:hover,
+      .btn-underline:focus{
+          color:var(--hover-color) ;
+      }
+      /* ************btn-underline buttons ended********************** */
+
+
+</style>
+
+<body>
+    <div class="buttons-container">
+        <button class="btn btn-pop">border pop</button>
+        <button class="btn btn-slide">background-slide</button>
+        <button class="btn btn-circle">background circle</button>
+        <button class="btn btn-underline">border underline</button>
+    </div>
+</body>
+
+</html>
